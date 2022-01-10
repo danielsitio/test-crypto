@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React, { HTMLAttributes } from 'react'
-import { getDateFromString } from '../../util/utilFunctions'
 
 interface props extends HTMLAttributes<HTMLElement> {
     id: string
@@ -29,7 +28,7 @@ export const NewsArticle = ({ id, title, author, date, content, tags, isWidget =
                 </h3>
                 <div className='text-text-2'>
                     <p>By {author}</p>
-                    <p>{getDateFromString(date).toLocaleDateString()}</p>
+                    <p>{date}</p>
                 </div>
             </header>
             <main>

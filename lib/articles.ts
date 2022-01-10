@@ -33,7 +33,7 @@ export const getNewsArticlesIds = async () => {
     })
 }
 
-export const getArticleData = async (id: string) => {
+export const getArticleData = async (id: string | string[] | undefined) => {
     var news = await fetch("https://data.messari.io/api/v1/news?fields=id,title,content,author/name,published_at,tags",
         {
             headers: {
