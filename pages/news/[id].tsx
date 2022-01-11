@@ -10,7 +10,7 @@ type props = {
     data: NewsItem
 }
 
-const Article = ({ data }: props) => {
+export const Article = ({ data }: props) => {
     const router = useRouter()
     const { id } = router.query
     return (
