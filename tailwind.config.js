@@ -20,6 +20,11 @@ module.exports = {
         2: '#dee2e6',
       }
     },
+    extend: {
+      animation: {
+        '': 'spin 3s linear infinite',
+      }
+    }
   },
   plugins: [],
   darkMode: 'class'

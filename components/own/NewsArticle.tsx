@@ -23,7 +23,7 @@ export const NewsArticle = ({ id, title, author, date, content, tags, isWidget =
     return (
         <article className={`relative tracking-widest leading-7 overflow-hidden bg-primary-3 rounded-tl-2xl rounded-tr-2xl p-6 ${isWidget ? "widget" : ""}`} {...rest} >
             <header className='mb-4'>
-                <h3 className='text-3xl font-bold'>
+                <h3 className='text-3xl font-bold mb-3'>
                     {isWidget ? <Link href={`/news/${id}`}><a>{title}</a></Link> : title}
                 </h3>
                 <div className='text-text-2'>

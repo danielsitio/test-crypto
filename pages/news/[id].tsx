@@ -11,8 +11,8 @@ type props = {
 }
 
 export const Article = ({ data }: props) => {
-    const router = useRouter()
-    const { id } = router.query
+    const { query } = useRouter()
+    const { id } = query
     return (
         <section className='px-20 pt-20'>
             <NewsArticle id={data.id} author={data.author.name} content={data.content} title={data.title} tags={data.tags} date={data.published_at} />

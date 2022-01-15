@@ -14,9 +14,7 @@ export const getNewsArticlesData = async () => {
             .then(res => res.json())
             .then(json => json.data as Array<NewsItem>)
             .then(data => data.filter(element => element != null && element != undefined))
-            .catch((error: Error) => {
-                return []
-            })
+            .catch((error: Error) => [])
     }
     return data
 }

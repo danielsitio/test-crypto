@@ -2,7 +2,7 @@ import { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react"
 
 export const Anchor = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     return (
-        <a className="font-bold" {...props}>
+        <a className="hover:text-text-2 transition-colors" {...props}>
             {
                 props.children
             }
