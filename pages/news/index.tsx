@@ -1,48 +1,35 @@
 import { GetStaticProps, NextPage } from "next"
-import Head from "next/head"
-import { useEffect } from "react"
-import { NewsArticle } from "../../components/own/NewsArticle"
+import { useEffect, useState } from "react"
+import NewsTable from "../../components/own/NewsTable"
+import SearchBar from "../../components/own/SearchBar"
+import { NewsArticleData } from "../../entities/news/NewsArticleData"
 import { getNewsArticlesData } from "../../lib/articles"
-import NewsItem from "../../util/classes/NewsItem"
-import { randomIntFromInterval } from "../../util/utilFunctions"
+import { NewsService } from "../../services/news/NewsService"
+
+import { NewsServiceImpl } from '../../services/news/NewsServiceImp'
+import Article from "./[id]"
+const newsService: NewsService = new NewsServiceImpl()
 
 type props = {
-    news: Array<NewsItem>
+    news: Array<NewsArticleData>
 }
 
 const News = ({ news }: props) => {
 
-    useEffect(() => console.log(news))
+    const [title, setTitle] = useState("");
 
     return (
         <>
-            <Head>
-                <title>News</title>
-                <meta name="description" content="adasdsasadsaddass " />
-
-            </Head>
-            <section className="px-12 pt-6  xl:px-60 grid grid-cols-1 md:grid-cols-2 gap-10">
-                <ul className="space-y-20">
-                    {news.slice(0, Math.ceil(news.length / 2)).map(({ author, content, id, published_at, tags, title }) => (
-                        <li key={id}>
-                            <NewsArticle id={id} title={title} author={author.name} date={published_at} content={content} tags={tags} isWidget style={{ height: randomIntFromInterval(250, 350) }} />
-                        </li>
-                    ))}
-                </ul>
-                <ul className="space-y-20">
-                    {news.slice(-Math.ceil(news.length / 2)).map(({ author, content, id, published_at, tags, title }) => (
-                        <li key={id}>
-                            <NewsArticle id={id} title={title} author={author.name} date={published_at} content={content} tags={tags} isWidget style={{ height: randomIntFromInterval(250, 350) }} />
-                        </li>
-                    ))}
-                </ul>
-            </section></>
+            <SearchBar filterFunction={setTitle} />
+            <NewsTable news={news} />
+        </>
     )
 }
 export default News
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const news = await getNewsArticlesData()
+    const news = await newsService.getNewsArticlesData()
+
     return {
         props: {
             news

@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import React, { HTMLAttributes } from 'react'
 
+import parse from "html-react-parser"
+
 interface props extends HTMLAttributes<HTMLElement> {
     id: string
     title: string
@@ -13,11 +15,6 @@ interface props extends HTMLAttributes<HTMLElement> {
 
 export const NewsArticle = ({ id, title, author, date, content, tags, isWidget = false, ...rest }: props) => {
 
-    const createMarkup = () => {
-        return {
-            __html: `${content}`
-        }
-    }
 
 
     return (
@@ -32,7 +29,7 @@ export const NewsArticle = ({ id, title, author, date, content, tags, isWidget =
                 </div>
             </header>
             <main>
-                <p dangerouslySetInnerHTML={createMarkup()}></p>
+                {parse(content)}
             </main>
             <footer>
                 <p>Los tags son :</p>

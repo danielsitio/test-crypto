@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next/types'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { getArticleData, getNewsArticlesIds } from '../../lib/articles'
 import { NewsArticle } from '../../components/own/NewsArticle'
@@ -11,8 +10,6 @@ type props = {
 }
 
 export const Article = ({ data }: props) => {
-    const { query } = useRouter()
-    const { id } = query
     return (
         <section className='px-20 pt-20'>
             <NewsArticle id={data.id} author={data.author.name} content={data.content} title={data.title} tags={data.tags} date={data.published_at} />
